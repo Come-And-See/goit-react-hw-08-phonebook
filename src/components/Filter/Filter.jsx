@@ -1,6 +1,6 @@
 import * as css from '../All.styled';
 import { useDispatch } from 'react-redux'
-import { filters } from '../../redux/contact/contactSlice';
+import { filters } from '../../redux/Slice/contactSlice';
 
 
 
