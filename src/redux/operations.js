@@ -26,13 +26,12 @@ export const PostContacts = createAsyncThunk(
   async function (contact, { rejectWithValue }) {
     try {
       const response = await axios.post(
-        `https://6480c2b3f061e6ec4d49d6bb.mockapi.io/contacts`,
-        {
+        `https://6480c2b3f061e6ec4d49d6bb.mockapi.io/contacts`,  
           contact,
-        }
+        
       );
 
-      if (response.status !== 200) {
+      if (response.status !== 201) {
         throw new Error('Server Error');
       }
 

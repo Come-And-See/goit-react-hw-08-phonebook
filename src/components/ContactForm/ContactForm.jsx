@@ -30,9 +30,6 @@ const ContactForm = () => {
 
         } else {
             dispatch(PostContacts(contact))
-            //     .then(() => {
-            //     dispatch(GetContacts());
-            // });
             setName('');
             setPhone('');
         }
