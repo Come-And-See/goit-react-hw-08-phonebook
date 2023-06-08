@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as css from '../All.styled';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux'
-import { GetContacts, PostContacts } from '../../redux/contact/contactSlice';
+import { GetContacts, PostContacts } from '../../redux/contact/operations';
 
 const ContactForm = () => {
     const contacts = useSelector((state) => state.contact.contacts.items)
