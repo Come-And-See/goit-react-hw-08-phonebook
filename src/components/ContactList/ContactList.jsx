@@ -1,7 +1,6 @@
 import * as css from '../All.styled';
 import { useDispatch, useSelector } from 'react-redux'
-import { GetContacts, DeleteContacts } from '../../redux/contact/operations';
-import { useEffect } from 'react';
+import { DeleteContacts } from '../../redux/operations';
 
 
 export const ContactList = () => {
@@ -13,9 +12,7 @@ export const ContactList = () => {
         contact.name.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase())
     ));
 
-    useEffect(() => {
-        dispatch(GetContacts())
-    }, [dispatch]);
+
 
     return (
         <css.UlContactList>

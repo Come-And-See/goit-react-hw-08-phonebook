@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import * as css from '../All.styled';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux'
-import { GetContacts, PostContacts } from '../../redux/contact/operations';
+import { GetContacts, PostContacts } from '../../redux/operations';
 
 const ContactForm = () => {
     const contacts = useSelector((state) => state.contact.contacts.items)
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
+
 
     const addContact = () => {
 
@@ -28,9 +29,10 @@ const ContactForm = () => {
             Notify.failure(`${name} is already in contacts.`);
 
         } else {
-            dispatch(PostContacts(contact)).then(() => {
-                dispatch(GetContacts());
-            });
+            dispatch(PostContacts(contact))
+            //     .then(() => {
+            //     dispatch(GetContacts());
+            // });
             setName('');
             setPhone('');
         }
