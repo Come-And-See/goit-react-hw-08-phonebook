@@ -8,7 +8,7 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch()
 
-    const name = useSelector(state => state.user.user.name)
+    const name = useSelector(state => state.user.user?.name)
 
 
     const handleSubmit = (e) => {

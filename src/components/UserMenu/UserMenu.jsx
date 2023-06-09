@@ -5,7 +5,7 @@ import { LogOut } from '../../redux/operations';
 
 
 const UserMenu = () => {
-    const email = useSelector(state => state.user.user.email)
+    const email = useSelector(state => state.user.user?.email)
     const dispatch = useDispatch()
     return (
         <css.UserMenu>

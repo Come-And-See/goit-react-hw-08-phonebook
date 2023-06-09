@@ -1,13 +1,22 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
+
 export const GetContacts = createAsyncThunk(
   'contact/GetContacts',
   async function (_, { rejectWithValue }) {
     try {
-      const response = await axios.get(
-        'https://6480c2b3f061e6ec4d49d6bb.mockapi.io/contacts'
-      );
+      const response = await axios.get('/contacts');
 
       if (response.status !== 200) {
         throw new Error('Server Error');
@@ -25,10 +34,7 @@ export const PostContacts = createAsyncThunk(
   'contact/PostContacts',
   async function (contact, { rejectWithValue }) {
     try {
-      const response = await axios.post(
-        `https://6480c2b3f061e6ec4d49d6bb.mockapi.io/contacts`,
-        contact
-      );
+      const response = await axios.post(`/contacts`, contact);
 
       if (response.status !== 201) {
         throw new Error('Server Error');
@@ -46,9 +52,7 @@ export const DeleteContacts = createAsyncThunk(
   'contact/DeleteContacts',
   async function (id, { rejectWithValue }) {
     try {
-      const response = await axios.delete(
-        `https://6480c2b3f061e6ec4d49d6bb.mockapi.io/contacts/${id}`
-      );
+      const response = await axios.delete(`/contacts/${id}`);
 
       if (response.status !== 200) {
         throw new Error('Server Error');
@@ -60,23 +64,11 @@ export const DeleteContacts = createAsyncThunk(
   }
 );
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
-
 export const Registration = createAsyncThunk(
   'auth/register',
   async function (dataUser, { rejectWithValue }) {
     try {
-      const response = await axios.post(
-        'https://connections-api.herokuapp.com/users/signup',
-        dataUser
-      );
+      const response = await axios.post('/users/signup', dataUser);
 
       if (response.status !== 201) {
         throw new Error('Server Error');
@@ -94,10 +86,7 @@ export const LogIn = createAsyncThunk(
   'auth/login',
   async function (dataUser, { rejectWithValue }) {
     try {
-      const response = await axios.post(
-        'https://connections-api.herokuapp.com/users/login',
-        dataUser
-      );
+      const response = await axios.post('/users/login', dataUser);
 
       if (response.status !== 200) {
         throw new Error('Server Error');
@@ -116,10 +105,35 @@ export const LogOut = createAsyncThunk(
   'auth/logOut',
   async function (_, { rejectWithValue }) {
     try {
-      await axios.post('https://connections-api.herokuapp.com/users/logout');
+      await axios.post('/users/logout');
       token.unset();
     } catch (error) {
       return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const FetchUser = createAsyncThunk(
+  'auth/FetchUser',
+  async function (_, { getState, rejectWithValue }) {
+    const state = getState();
+    console.log('state:', state);
+
+    const persistedToken = state.user.token;
+    console.log('persistedToken:', persistedToken);
+
+    if (persistedToken === null) {
+      // throw new Error('Server Error');
+      return;
+    }
+
+    token.set(persistedToken);
+
+    try {
+      const { data } = await axios.get('/users/current');
+      return data;
+    } catch (error) {
+      // return rejectWithValue(error.message);
     }
   }
 );

@@ -18,7 +18,7 @@ export const ContactList = () => {
         <css.UlContactList>
             {data.map((contact) => (
                 <li key={contact.id}>
-                    {contact.name}: {contact.phone}
+                    {contact.name}: {contact.number}
                     <button type='button' onClick={() => dispatch(DeleteContacts(contact.id))}>Delete</button>
                 </li>))}
         </css.UlContactList>

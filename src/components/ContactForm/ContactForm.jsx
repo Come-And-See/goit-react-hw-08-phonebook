@@ -8,17 +8,17 @@ const ContactForm = () => {
     const contacts = useSelector((state) => state.contact.contacts.items)
     const dispatch = useDispatch();
     const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
+    const [number, setNumber] = useState('');
 
 
     const addContact = () => {
 
         const contact = {
             name,
-            phone,
+            number,
         }
 
-        if (name === '' || phone === '') {
+        if (name === '' || number === '') {
             Notify.failure(`Enter the contact's name and phone number.`);
             return;
         }
@@ -31,7 +31,7 @@ const ContactForm = () => {
         } else {
             dispatch(PostContacts(contact))
             setName('');
-            setPhone('');
+            setNumber('');
         }
     }
 
@@ -56,8 +56,8 @@ const ContactForm = () => {
                     name="number"
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                    value={phone}
-                    onChange={(e) => { setPhone(e.target.value) }}
+                    value={number}
+                    onChange={(e) => { setNumber(e.target.value) }}
                     required
                 /></label>
             <button type='button' onClick={addContact}>Add contact</button>
