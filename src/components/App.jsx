@@ -1,28 +1,25 @@
 import React, { useEffect } from 'react';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import ContactForm from './ContactForm/ContactForm';
 import * as css from './All.styled';
 import { FetchUser, GetContacts } from '../redux/operations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import NavLinks from './NavLinks/NavLinks';
 import RegistrationForm from './Registration/Registration';
 import { Route, Routes } from 'react-router-dom';
 import LoginForm from './Login/login';
+import { PrivateRouter } from '../Hoc/PrivateRouter';
+import Contacts from './Contacts/Contacts';
 
 
 const App = () => {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn)
+
 
   useEffect(() => {
-    dispatch(GetContacts())
-
     dispatch(FetchUser())
-      
-    //   .then(() => {
-    //   // dispatch(GetContacts())
-    // })
-  }, [dispatch]);
+    dispatch(GetContacts())
+  }, [dispatch, isLoggedIn]);
+
 
 
   return (
@@ -32,17 +29,13 @@ const App = () => {
       </css.Nav>
 
       <Routes>
+        <Route path='/' element={<css.BookContacts>Book Contacts</css.BookContacts>}/>
         <Route path="/registration" element={<RegistrationForm />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/contacts" element={<PrivateRouter><Contacts /></PrivateRouter>} />
       </Routes>
 
-      <css.DivAll>
-        <h1>Phonebook</h1>
-        <ContactForm />
-        <h2>Contacts</h2>
-        <Filter />
-        <ContactList />
-      </css.DivAll></div>
+    </div>
   )
 };
 

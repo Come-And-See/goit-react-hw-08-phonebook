@@ -36,13 +36,21 @@ export const DivContactForm = styled.div`
   }
 
   button {
-    width: 100px;
-    height: 30px;
-    border-radius: 5px;
-    border: 1px solid;
+    border-radius: 4px;
+    border: none;
     cursor: pointer;
+    padding: 5px;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    border: 1px solid;
+    width: 25%;
+    height: 50px;
+
     &:hover {
-      background-color: #cbcbcb;
+      background-color: #333333;
+      color: #ffffff;
     }
   }
 `;
@@ -61,13 +69,20 @@ export const UlContactList = styled.ul`
     align-items: center;
   }
   button {
-    margin-left: 21px;
-    border-radius: 5px;
-    border: 1px solid;
+    border-radius: 4px;
+    border: none;
     cursor: pointer;
-    padding: 10px;
+    padding: 5px;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    border: 1px solid;
+    width: 80px;
+
     &:hover {
-      background-color: #cbcbcb;
+      background-color: #333333;
+      color: #ffffff;
     }
   }
 `;
@@ -80,14 +95,28 @@ export const Input = styled.input`
   width: 100%;
 `;
 
+
+
+export const BookContacts = styled.div`
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+  margin-top: 30px;
+`;
+
 export const Nav = styled.nav`
-  padding: 25px 15px;
+  height: 80px;
+  /* padding: 25px 15px; */
   border-bottom: 1px solid #d6d1d1;
   -webkit-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
   -moz-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
   box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
   margin-bottom: 5px;
   text-align: right;
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
 `;
 
 export const Button = styled(NavLink)`
@@ -100,10 +129,17 @@ export const Button = styled(NavLink)`
   border: 1px solid #333333;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  font-weight: 600;
+
+  &.active {
+    background-color: #333333;
+    color: #ffffff;
+    border-color: #ffffff;
+  }
 
   &:hover {
     background-color: #333333;
-    color: #ffffff;
+    color: #7ba5ed;
   }
 `;
 
@@ -128,7 +164,7 @@ export const Login = styled.div`
   border-radius: 25px;
   height: 450px;
   width: 405px;
-  margin: auto;
+  margin: 50px auto;
   padding: 60px 60px;
   background: url(https://picsum.photos/id/1004/5616/3744) no-repeat center
     center #505050;
@@ -271,7 +307,6 @@ export const ForgotPasswordLink = styled.a`
   text-decoration: none;
   color: rgba(255, 255, 255, 0.2);
 `;
-
 
 export const UserMenu = styled.div`
   display: flex;

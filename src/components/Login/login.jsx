@@ -2,13 +2,13 @@ import { useState } from 'react'
 import * as css from '../All.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { LogIn } from '../../redux/operations';
+import { Navigate } from 'react-router-dom';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch()
-
-    const name = useSelector(state => state.user.user?.name)
+    const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 
 
     const handleSubmit = (e) => {
@@ -16,15 +16,18 @@ const LoginForm = () => {
 
         dispatch(LogIn({ email, password }))
 
-
         setEmail('')
         setPassword('')
     };
 
+    if (isLoggedIn) {
+        return <Navigate to="/contacts" replace={true} />;
+    }
+
     return (
         <css.Container>
             <css.Login>
-                <css.Title>Log in, {name}</css.Title>
+                <css.Title>Log in</css.Title>
 
                 <css.Form onSubmit={handleSubmit}>
                     <css.InputWrapper>

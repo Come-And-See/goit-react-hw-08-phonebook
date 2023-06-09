@@ -117,14 +117,11 @@ export const FetchUser = createAsyncThunk(
   'auth/FetchUser',
   async function (_, { getState, rejectWithValue }) {
     const state = getState();
-    console.log('state:', state);
-
     const persistedToken = state.user.token;
-    console.log('persistedToken:', persistedToken);
 
     if (persistedToken === null) {
       // throw new Error('Server Error');
-      return;
+      return rejectWithValue();
     }
 
     token.set(persistedToken);
