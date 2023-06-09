@@ -2,8 +2,6 @@ import React from 'react'
 import * as css from '../All.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { LogOut } from '../../redux/operations';
-import { NavLink, Outlet } from 'react-router-dom';
-
 
 const UserMenu = () => {
     const email = useSelector(state => state.user.user?.email)
@@ -15,7 +13,7 @@ const UserMenu = () => {
 
                 <css.UserMenuEmail>{email}</css.UserMenuEmail>
                 <css.LogOutButton type='button' onClick={() => dispatch(LogOut())}>Log Out</css.LogOutButton>
-                <Outlet />
+               
             </css.UserMenu>
         </>
 
