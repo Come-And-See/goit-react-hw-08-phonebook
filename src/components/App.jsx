@@ -6,7 +6,7 @@ import NavLinks from './NavLinks/NavLinks';
 import RegistrationForm from '../pages/Registration/Registration';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import LoginForm from '../pages/Login/login';
-import { PrivateRouter } from '../Hoc/PrivateRouter';
+import { PrivateRouter } from '../hooks/PrivateRouter';
 import Contacts from '../pages/Contacts/Contacts';
 import { FetchUser } from '../redux/operationsUser';
 
