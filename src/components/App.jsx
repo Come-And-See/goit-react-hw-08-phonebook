@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import * as css from './All.styled';
-import { FetchUser, GetContacts } from '../redux/operations';
+import {  GetContacts } from '../redux/operationsContacts';
 import { useDispatch, useSelector } from 'react-redux';
 import NavLinks from './NavLinks/NavLinks';
-import RegistrationForm from './Registration/Registration';
-import { Route, Routes } from 'react-router-dom';
-import LoginForm from './Login/login';
+import RegistrationForm from '../pages/Registration/Registration';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import LoginForm from '../pages/Login/login';
 import { PrivateRouter } from '../Hoc/PrivateRouter';
-import Contacts from './Contacts/Contacts';
+import Contacts from '../pages/Contacts/Contacts';
+import { FetchUser } from '../redux/operationsUser';
 
 
 const App = () => {
@@ -29,10 +30,11 @@ const App = () => {
       </css.Nav>
 
       <Routes>
-        <Route path='/' element={<css.BookContacts>Book Contacts</css.BookContacts>}/>
+        <Route path='/' element={<css.BookContacts>Book Contacts</css.BookContacts>} />
         <Route path="/registration" element={<RegistrationForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/contacts" element={<PrivateRouter><Contacts /></PrivateRouter>} />
+        <Route path="*" element={<Navigate to="/" replace={true} />} />
       </Routes>
 
     </div>

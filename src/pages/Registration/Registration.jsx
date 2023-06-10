@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import * as css from '../All.styled';
-import { useDispatch } from 'react-redux';
-import { Registration } from '../../redux/operations';
+import * as css from '../../components/All.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { Registration } from '../../redux/operationsUser';
+import { Navigate } from 'react-router-dom';
 
 const RegistrationForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch()
+    const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,6 +20,10 @@ const RegistrationForm = () => {
         setEmail('')
         setPassword('')
     };
+
+    if (isLoggedIn) {
+        return <Navigate to="/contacts" replace={true} />;
+    }
 
     return (
         <css.Container>

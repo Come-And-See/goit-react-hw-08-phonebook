@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import * as css from '../All.styled';
+import * as css from '../../components/All.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { LogIn } from '../../redux/operations';
+import { LogIn } from '../../redux/operationsUser';
 import { Navigate } from 'react-router-dom';
 
 const LoginForm = () => {

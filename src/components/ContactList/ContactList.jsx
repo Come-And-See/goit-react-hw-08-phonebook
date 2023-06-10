@@ -1,6 +1,6 @@
 import * as css from '../All.styled';
 import { useDispatch, useSelector } from 'react-redux'
-import { DeleteContacts } from '../../redux/operations';
+import { DeleteContacts } from '../../redux/operationsContacts';
 
 
 export const ContactList = () => {

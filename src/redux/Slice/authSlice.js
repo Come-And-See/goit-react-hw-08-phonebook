@@ -1,4 +1,4 @@
-import { FetchUser, LogIn, LogOut, Registration } from '../operations';
+import { FetchUser, LogIn, LogOut, Registration } from '../operationsUser';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {

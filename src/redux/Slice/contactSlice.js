@@ -1,4 +1,8 @@
-import { GetContacts, DeleteContacts, PostContacts } from '../operations';
+import {
+  GetContacts,
+  DeleteContacts,
+  PostContacts,
+} from '../operationsContacts';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -45,7 +49,6 @@ export const counterSlice = createSlice({
     [PostContacts.rejected]: (state, action) => {
       state.contacts.error = action.payload;
     },
-  
   },
 });
 
